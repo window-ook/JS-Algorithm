@@ -1,5 +1,6 @@
-// 백준 1181 : 단어 정렬, sort
-const data = `13
+// 단어 정렬
+
+const fs = `13
 i
 but
 wont
@@ -14,7 +15,7 @@ wait
 im
 yours`;
 
-const input = data.split('\n');
+const input = fs.split('\n');
 let n = Number(input[0]);
 let arr = [];
 for (let i = 1; i <= n; i++) {

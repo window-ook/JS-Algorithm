@@ -1,10 +1,11 @@
-// 백준 10814 : 나이순 정렬, sort
-const data = `3
+// 나이순 정렬
+
+const fs = `3
 21 Junkyu
 21 Dohyun
 20 Sunyoung`;
 
-let input = data.split('\n');
+let input = fs.split('\n');
 const n = Number(input[0]);
 let arr = [];
 

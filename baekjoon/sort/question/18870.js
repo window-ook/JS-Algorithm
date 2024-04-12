@@ -1,8 +1,9 @@
-// 백준 18870 : 좌표 압축, sort
-const data = `5
+// 좌표 압축
+
+const fs = `5
 2 4 -10 4 -9`;
 
-let input = data.split('\n');
+let input = fs.split('\n');
 let n = Number(input[0]);
 let arr = input[1].split(' ').map(Number);
 let uniqueArr = [...new Set(arr)];

@@ -1,6 +1,7 @@
-// 백준 1427 : 소트인사이드, stable sort
-const data = `2143`;
-let input = data.split('\n')[0];
+// 소트인사이드
+
+const fs = `2143`;
+let input = fs.split('\n')[0];
 let arr = [];
 
 for (let i = 0; i < input.length; i++) {

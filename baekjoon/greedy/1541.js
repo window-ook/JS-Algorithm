@@ -1,7 +1,7 @@
-// 백준 11047 : 잃어버린 괄호, greedy
-const data = `55-50+40`;
+// 잃어버린 괄호
 
-const group = data.split('-');
+const fs = `55-50+40`;
+const group = fs.split('-');
 
 let answer = 0;
 for (let i = 0; i < group.length; i++) {

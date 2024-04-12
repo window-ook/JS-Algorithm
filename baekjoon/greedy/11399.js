@@ -1,8 +1,9 @@
-// 백준 11399 : ATM 대기시간, greedy
-const data = `5
+// ATM 대기시간
+
+const fs = `5
 3 1 4 3 2`;
 
-const input = data.split('\n');
+const input = fs.split('\n');
 const n = Number(input[0]);
 const arr = input[1].split(' ').map(Number);
 

@@ -1,12 +1,13 @@
-// 백준 11651 : 좌표 정렬하기 2, sort
-const data = `5
+// 좌표 정렬하기 2
+
+const fs = `5
 0 4
 1 2
 1 -1
 2 2
 3 3`;
 
-let input = data.split('\n');
+let input = fs.split('\n');
 let n = Number(input[0]);
 let arr = [];
 

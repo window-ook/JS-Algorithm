@@ -1,5 +1,6 @@
-// 백준 11047 : 동전 0, greedy
-const data = `10 4790
+// 동전 0
+
+const fs = `10 4790
 1
 5
 10
@@ -10,9 +11,8 @@ const data = `10 4790
 5000
 10000
 50000`;
-
-let n = Number(input[0].split(' ')[0]); // 동전의 개수
-let k = Number(input[0].split(' ')[1]); // 만들어야 할 금액
+let input = fs.split('\n');
+let [n, k] = Number(input[0].split(' '));
 let arr = [];
 
 // 전체 동전(화폐 단위) 데이터 입력
