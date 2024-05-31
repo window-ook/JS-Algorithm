@@ -1,3 +1,4 @@
+// 연결 리스트 - 딕셔너리
 class Queue {
   constructor() {
     this.items = {};

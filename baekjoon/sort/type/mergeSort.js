@@ -2,7 +2,7 @@
 function merge(arr, left, mid, right) {
   let i = left;
   let j = mid + 1;
-  let k = left; // 결과 배열의 인덱스
+  let k = right; // 결과 배열의 인덱스
   while (i <= mid && j <= right) {
     if (arr[i] <= arr[j]) sorted[k++] = arr[i++];
     else sorted[k++] = arr[j++];
