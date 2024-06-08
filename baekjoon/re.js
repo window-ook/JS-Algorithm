@@ -1,41 +1,31 @@
-/*N과 M
-1. 아이디어
-- 순열 구하기
-
-2. 시간 복잡도
-N! (중복 불가능)
-
-3. 자료구조
-- arr[] 순열을 계산할 원소를 담은 배열 : int
-- visited[] 방문 여부 : boolean
-- selected[] 현재 순열에 포함된 원소의 인덱스 : int*/
-
-const input = `4 2`;
-const [n, m] = input.split(' ').map(Number);
-let arr = [];
-for (let i = 1; i <= n; i++) arr.push(i); // arr = [1, 2, 3, 4]
-let visited = new Array(n).fill(false); // [false, false, false, false]
-let selected = [];
-let answer = '';
-
-function dfs(arr, depth) {
-  // 순열 확인
-  if (depth == m) {
-    let result = [];
-    for (i of selected) result.push(arr[i]);
-    for (x of result) answer += x + ' ';
-    answer += '\n';
+function dfs(oper, depth) {
+  if (depth == n - 1) {
+    let str = '';
+    for (let i = 0; i < n - 1; i++) str += arr[i] + oper[i];
+    str += arr[n - 1];
+    current = eval(str.split(' ').join(''));
+    if (current == 0) console.log(str);
     return;
   }
 
-  for (let i = 0; i < arr.length; i++) {
-    if (visited[i]) continue;
-    selected.push(i);
-    visited[i] = true;
-    dfs(arr, depth + 1);
-    selected.pop(i);
-    visited[i] = false;
+  for (a of [' ', '+', '-']) {
+    oper.push(a);
+    dfs(oper, depth + 1);
+    oper.pop();
   }
 }
-dfs(arr, 0);
-console.log(answer);
+
+const fs = `2
+3
+7`;
+const input = fs.split('\n');
+let testCase = Number(input[0]);
+let n = 0;
+let arr = [];
+for (let tc = 1; tc <= testCase; tc++) {
+  n = Number(input[tc]);
+  arr = [];
+  for (let i = 1; i <= n; i++) arr.push(i);
+  dfs([], 0);
+  console.log();
+}
