@@ -1,6 +1,8 @@
-// 숫자 카드 2
-// 난이도 ⭐️⭐️
-// lowerBound, upperBound, countByRange 구현하여 사용하기
+/** 숫자 카드 2 - 난이도 ⭐️⭐️ 
+ 
+1. 아이디어 : lowerBound, upperBound, countByRange 구현하여 사용하기
+*/
+
 function lowerBound(arr, target, start, end) {
   while (start < end) {
     let mid = parseInt((start + end) / 2);

@@ -1,6 +1,7 @@
-// 병사 배치하기
-// 난이도 ⭐️⭐️
-// 가장 긴 증가하는 부분 수열 찾기  = LIS, Longest Increasing Subsequence
+/** 병사 배치하기 - 난이도 ⭐️⭐️ 
+  
+  1. 아이디어 : 가장 긴 증가하는 부분 수열 찾기  = LIS, Longest Increasing Subsequence*/
+
 function lowerBound(arr, target, start, end) {
   while (start < end) {
     let mid = (start + end) / 2;

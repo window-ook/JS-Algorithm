@@ -1,5 +1,4 @@
-// K번째 수
-// 난이도 ⭐️⭐️
+/** K번째 수 - 난이도 ⭐️⭐️ */
 const fs = `3
 7`;
 const input = fs.split('\n');

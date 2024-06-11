@@ -1,6 +1,5 @@
-// 회문
-// 난이도 ⭐️⭐️
-// 0 1 1 2 2 0 1
+/** 회문 - 난이도 ⭐️⭐️ */
+
 const fs = `7
 abba
 summuus
@@ -11,7 +10,6 @@ comwwmoc
 comwwtmoc`;
 const input = fs.split('\n');
 const testCases = Number(input[0]);
-// 회문 확인
 function palindrome(x) {
   return x == x.split('').reverse().join('');
 }

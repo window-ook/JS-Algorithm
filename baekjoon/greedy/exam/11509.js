@@ -1,5 +1,4 @@
-// 풍선 맞추기
-// 난이도 ⭐️⭐️⭐️
+/** 풍선 맞추기 - 난이도 ⭐️⭐️⭐️ */
 
 const rl = require('readline').createInterface({
   input: process.stdin,
