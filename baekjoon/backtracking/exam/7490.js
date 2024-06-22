@@ -1,8 +1,10 @@
 /** 0 만들기 - 난이도 ⭐️⭐️⭐️
  
   1. 아이디어 : 
-  dfs 함수 생성 후에 testCase의 n들을 반복문으로 dfs 실행한 값을 출력하기
-  연산자를 중복해서 사용가능하기 때문에 중복순열
+  1부터 n까지의 숫자들의 합이 0이 되도록 만들어야 함
+  - dfs 함수 만들기
+  - 반복문으로 각 testCase에 해당하는 n을 dfs 실행한 값을 출력하기
+  - 연산자를 중복해서 사용가능하기 때문에 중복순열
 
   2. 시간복잡도 : N^8
 
@@ -13,10 +15,10 @@
 
 function dfs(result, depth) {
   if (depth == n - 1) {
-    let str = ''; // 출력할 수식
+    let str = ''; // 출력할 수식을 모으는 문자열
     for (let i = 0; i < n - 1; i++) str += arr[i] + result[i]; // 수열의 숫자 + 연산자 순서로 수식에 포함시키기
     str += arr[n - 1] + ''; // 수열의 마지막 숫자를 수식 마지막에 위치
-    current = eval(str.split(' ').join('')); // eval : 문자로 된 수식 계산 함수
+    current = eval(str.split(' ').join('')); // eval : 문자열로 된 수식을 계산
     if (current == 0) console.log(str); // 결과가 0이면 수식 출력하기
     return; // 백트래킹
   }

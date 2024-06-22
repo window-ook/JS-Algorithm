@@ -17,8 +17,18 @@
 
   depth = 0으로 돌아와서 pop을 하고([]이 됨) i = 1 실행 시작, selected = [1]이 되고 재귀 호출 
   다음 i = 2 실행 시작 depth = 1, selected = [1, 2]에서 재귀 호출
-  depth가 m이므로 '2 3' 출력하고 depth 1일 때로 백트래킹 후 seleted = [1]이 되고 i = 2의 실행 종료
+  depth가 m이므로 '2 3' 출력하고 depth 1일 때로 백트래킹 후 selected = [1]이 되고 i = 2의 실행 종료
   다음 i = 3 실행 시작 depth = 1, selected = [1, 3]에서 재귀 호출 
+  depth가 m이므로 '2 4' 출력하고 depth 1일 때로 백트래킹 후 selected = [1]이 되고 i = 3의 실행 종료
+  다음 i는 arr.length와 같으므로 for 반복문을 빠져나오게 된다 : depth = 1에서 depth = 0으로 백트래킹 하게 된다
+
+  depth = 0으로 돌아와서 pop을 하고([]이 됨) i = 2 실행 시작, selected = [2]가 되고 재귀 호출
+  다음 i = 3 실행 시작 depth = 1, selected = [2, 3]에서 재귀 호출
+  depth가 m이므로 '3 4' 출력하고 depth 1일 때로 백트래킹 후 selected = [2]가 되고 i = 3의 실행 종료
+  다음 i는 arr.length와 같으므로 for 반복문을 빠져나오게 된다 : depth = 1에서 depth = 0으로 백트래킹 하게 된다
+
+  depth = 0으로 돌아와서 pop을 하고([]이 됨) i = 3 실행 시작, selected = [3]이 되고 재귀 호출
+  dfs(arr, 0, 0) 종료
   ...
    */
 

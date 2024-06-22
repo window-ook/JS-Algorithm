@@ -1,10 +1,12 @@
-// 이진 탐색 - 재귀함수
+/** 이진 탐색 : 재귀함수
+  - 찾은 경우 중간점 인덱스 반환
+  - 중간점의 값(mid)보다 찾고자 하는 값(target)이 작은 경우 왼쪽 확인
+  - 중간점의 값(mid)보다 찾고자 하는 값(target)이 큰 경우 오른쪽 확인
+  */
 function binarySearch(arr, target, start, end) {
   if (start > end) return -1;
   let mid = parseInt((start + end) / 2);
-  // 찾은 경우 중간점 인덱스 반환
-  // 중간점의 값(mid)보다 찾고자 하는 값(target)이 작은 경우 왼쪽 확인
-  // 중간점의 값(mid)보다 찾고자 하는 값(target)이 큰 경우 오른쪽 확인
+
   if (arr[mid] == target) return mid;
   else if (arr[mid] > target) return binarySearch(arr, target, start, mid - 1);
   else return binarySearch(arr, target, mid + 1, end);
