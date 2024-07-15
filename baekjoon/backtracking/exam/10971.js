@@ -11,16 +11,31 @@
 - result[] 현재까지 선택된 도시를 저장하는 배열
 - visited[] 방문 여부를 저장하는 배열
  */
+const fs = `4
+0 10 15 20
+5 0 9 10
+6 13 0 12
+8 8 9 0`;
+const input = fs.split('\n');
+const n = Number(input[0]);
+let graph = []; // 이동 비용이 담긴 2차원 배열
+for (let i = 0; i <= n; i++) graph.push([0]);
+for (let i = 1; i <= n; i++) {
+  line = input[i].split(' ').map(Number);
+  for (let j = 0; j < n; j++) graph[i].push(line[j]);
+}
+let visited = new Array(11).fill(false); // 방문 처리
+let result = []; // 순열 정보 배열
+let minValue = 1e9; // 비용의 최솟값
 
 function dfs(depth) {
   // 현재 순열에 대한 처리
   if (depth == n - 1) {
-    let totalCost = 0; // 1번 노드에서 출발
+    let totalCost = 0;
     let curr = 1; // 1번 노드에서 출발
     for (let i = 0; i < n - 1; i++) {
-      // 현재 순열에 따라서 노드 이동
-      let nextNode = result[i]; // 다음 이동 노드까지의 비용 계산
-      let cost = graph[curr][nextNode];
+      let nextNode = result[i]; // 다음 이동 노드까지의 비용 계산 / 2
+      let cost = graph[curr][nextNode]; // 비용 / graph[1][2]
       if (cost == 0) return; // 이동 불가능하면 무시
       totalCost += cost; // 이동 가능하면 비용을 더하고
       curr = nextNode; // 노드 이동
@@ -33,30 +48,12 @@ function dfs(depth) {
 
   for (let i = 2; i <= n; i++) {
     if (visited[i]) continue;
-    result.push(i);
+    result.push(i); // d0, [2] / d1 [2, 3] / d2 [2, 3, 4]
     visited[i] = true;
     dfs(depth + 1);
     result.pop();
     visited[i] = false;
   }
 }
-
-const fs = `4
-0 10 15 20
-5 0 9 10
-6 13 0 12
-8 8 9 0`;
-const input = fs.split('\n');
-const n = Number(input[0]);
-let graph = [];
-for (let i = 0; i <= n; i++) graph.push([0]);
-for (let i = 1; i <= n; i++) {
-  line = input[i].split(' ').map(Number);
-  for (let j = 0; j < n; j++) graph[i].push(line[j]);
-}
-let visited = new Array(11).fill(false);
-let result = [];
-let minValue = 1e9;
-
 dfs(0);
 console.log(minValue);
