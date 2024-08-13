@@ -1,34 +1,28 @@
-/**
- 1. 아이디어 : 퀸을 서로 공격할 수 없는 위치에 놓기
- - N이 주어지면 N x N의 체스판이 생성된다
- - 대각선이나 같은 행 또는 열에 있는지 판단하는 함수 possible(x, y)
- - 행을 내려가면서 possible로 확인하는 재귀 dfs(row)
+const fs = `3 6
+HFDFFB
+AJHGDH
+DGAGEH`;
+const input = fs.split('\n');
+const [r, c] = input[0].split(' ').map(Number);
+let arr = [];
+for (let i = 1; i <= input.length; i++) arr.push(input[i]);
+let dx = [-1, 1, 0, 0];
+let dy = [0, 0, -1, 1];
+let visited = new Set();
+let maxDepth = 0;
 
- 3. 자료구조:
- queens [] - 퀸 좌표
- count - 좌표에 나타낼 퀸
- */
-const fs = `8`;
-const n = Number(fs);
-let queens = [];
-let count = 0;
-
-function possible(x, y) {
-  for (let [a, b] of queens) {
-    if (a == x || b == y) return false;
-    if (Math.abs(x - a) == Math.abs(y - b)) return false;
-  }
-  return true;
-}
-
-function dfs(row) {
-  if (row == n) count += 1;
-  for (let i = 0; i < n; i++) {
-    if (!possible(row, i)) continue;
-    queens.push([row, i]);
-    dfs(row + 1);
-    queens.pop();
+function dfs(depth, x, y) {
+  maxDepth = Math.max(maxDepth, depth);
+  for (let i = 0; i < 4; i++) {
+    let nx = x + dx[i];
+    let ny = y + dy[i];
+    if (nx < 0 || nx >= r || ny < 0 || ny >= c) continue;
+    if (visited.has(arr[nx][ny])) continue;
+    visited.add(arr[nx][ny]);
+    dfs(depth + 1, nx, ny);
+    visited.delete(arr[nx][ny]);
   }
 }
-dfs(0);
-console.log(count);
+visited.add(arr[0][0]);
+dfs(1, 0, 0);
+console.log(maxDepth);
