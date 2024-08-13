@@ -33,13 +33,13 @@ for (let i = 0; i < input.length; i++) {
 }
 
 function dfs(arr, depth, start) {
-  // 6개가 모이면 조합 출력
+  // 6개가 모이면 하나의 조합 출력
   if (depth == 6) {
-    let result = []; // 집합 S로 만든 조합 1줄
+    let result = []; // 집합 S로 만든 조합
     for (let i of selected) result.push(arr[i]); // 조합에 인덱스에 해당하는 집합의 수를 집어넣기
     for (let x of result) answer += x + ' '; // 조합을 문자열로 바꾸기
-    answer += '\n'; // 조합하나가 출력되면 줄바꿈
-    return;
+    answer += '\n'; // 조합 하나가 출력되면 줄바꿈
+    return; // 백트래킹
   }
 
   for (let i = start; i < arr.length; i++) {
