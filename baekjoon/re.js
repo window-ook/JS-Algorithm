@@ -1,28 +1,35 @@
-const fs = `3 6
-HFDFFB
-AJHGDH
-DGAGEH`;
+const fs = `2
+< >`;
 const input = fs.split('\n');
-const [r, c] = input[0].split(' ').map(Number);
-let arr = [];
-for (let i = 1; i <= input.length; i++) arr.push(input[i]);
-let dx = [-1, 1, 0, 0];
-let dy = [0, 0, -1, 1];
-let visited = new Set();
-let maxDepth = 0;
+const k = Number(input[0]);
+const arr = input[1].split(' ');
+let result = [];
+let visited = new Array(10).fill(false);
 
-function dfs(depth, x, y) {
-  maxDepth = Math.max(maxDepth, depth);
-  for (let i = 0; i < 4; i++) {
-    let nx = x + dx[i];
-    let ny = y + dy[i];
-    if (nx < 0 || nx >= r || ny < 0 || ny >= c) continue;
-    if (visited.has(arr[nx][ny])) continue;
-    visited.add(arr[nx][ny]);
-    dfs(depth + 1, nx, ny);
-    visited.delete(arr[nx][ny]);
+function dfs(depth) {
+  if (depth == k + 1) {
+    let check = true;
+    for (let i = 0; i < k; i++) {
+      if (arr[i] == '<') {
+        if (result[i] > result[i + 1]) return false;
+      } else if (arr[i] == '>') {
+        if (result[i] < result[i + 1]) return false;
+      }
+    }
+
+    if (check) {
+      current = '';
+      for (let i of result) current += i;
+      if (first == '') first = current;
+    }
+  }
+
+  for (let i = 0; i < 10; i++) {
+    if (visited[i]) continue;
+    visited[i] = true;
+    result.push(i);
+    dfs(depth + 1);
+    visited[i] = false;
+    result.pop();
   }
 }
-visited.add(arr[0][0]);
-dfs(1, 0, 0);
-console.log(maxDepth);
