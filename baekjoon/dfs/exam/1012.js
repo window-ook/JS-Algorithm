@@ -1,7 +1,10 @@
 /** 유기농 배추 - 난이도 ⭐️⭐️⭐️
     1. 아이디어 : 
+    - 전체 그래프 그리기
+    - 배추를 그래프에 심기
+    - dfs로 라인을 하나씩 내려가면서 탐색하고 방문표시
  
-    2. 시간 복잡도 :
+    2. 시간복잡도 :
 
     3. 자료구조 :
     testCase 테스트 케이스 개수
@@ -41,16 +44,16 @@ while (testCases--) {
   }
   for (let i = 1; i <= k; i++) {
     let [y, x] = input[line + i].split(' ').map(Number);
-    graph[x][y] = 1;
+    graph[x][y] = 1; // 배추가 심긴 좌표에 표시
   }
   let answer = 0; // 연결 요소(connected component)의 수 계산
-  // 세로로 한 라인씩 내려가면서 라인의 모든 좌표 탐색
+  // 세로로 한 라인씩 내려가면서 모든 좌표 탐색
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < m; j++) {
       if (dfs(graph, n, m, i, j)) answer++; // 현재 위치에서 DFS 수행
     }
   }
-  line += k + 1; // 다음 테스트 케이스로 이동
+  line += k + 1; // 다음 테스트 케이스로 이동(0번째와 1번째가 문제이므로)
   console.log(answer);
 }
 
@@ -69,5 +72,6 @@ function dfs(graph, n, m, x, y) {
     dfs(graph, n, m, x, y + 1);
     return true;
   }
+  // 방문한 곳은 false 반환
   return false;
 }
