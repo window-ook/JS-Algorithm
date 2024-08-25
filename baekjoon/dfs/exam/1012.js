@@ -46,14 +46,14 @@ while (testCases--) {
     let [y, x] = input[line + i].split(' ').map(Number);
     graph[x][y] = 1; // 배추가 심긴 좌표에 표시
   }
-  let answer = 0; // 연결 요소(connected component)의 수 계산
+  let answer = 0; // 연결 요소(connected component)의 수 계산 = 배추 지렁이 수
   // 세로로 한 라인씩 내려가면서 모든 좌표 탐색
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < m; j++) {
-      if (dfs(graph, n, m, i, j)) answer++; // 현재 위치에서 DFS 수행
+      if (dfs(graph, n, m, i, j)) answer++; // 현재 위치부터 가로, 세로, x 좌표, y 좌표 이동하며 dfs 진행
     }
   }
-  line += k + 1; // 다음 테스트 케이스로 이동(0번째와 1번째가 문제이므로)
+  line += k + 1; // 다음 테스트 케이스의 가로, 세로, 배추 개수
   console.log(answer);
 }
 

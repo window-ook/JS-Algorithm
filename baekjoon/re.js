@@ -4,7 +4,6 @@ const fs = `4 2
 1 4 3
 1 2
 3 2`;
-// 그래프 그리고, x로 dfs 걸어서 y까지 거리 출력하기
 const input = fs.split('\n');
 let [n, m] = input[0].split(' ').map(Number);
 let graph = [];
@@ -19,13 +18,13 @@ function dfs(x, dist) {
   if (visited[x]) return;
   visited[x] = true;
   distance[x] = dist;
-  for (let [y, cost] of graph[x]) dfs(y, dist + cost);
+  for (let [y, cost] of graph[x]) dfs(y, cost + dist);
 }
 
 for (let i = 0; i < m; i++) {
   let [x, y] = input[n + i].split(' ').map(Number);
   visited = new Array(n + 1).fill(false);
   distance = new Array(n + 1).fill(-1);
-  dfs(x, 0); // x부터 y까지 거리 탐색
-  console.log(distance[y]); // distance에서 y까지의 거리는 y번째에 저장되어있음
+  dfs(x, 0);
+  console.log(distance[y]);
 }
