@@ -1,30 +1,52 @@
-const fs = `4 2
-2 1 2
-4 3 2
-1 4 3
+const fs = `6 3
 1 2
-3 2`;
+2 3
+3 4
+6 5
+1 2
+2 3
+3 4
+4 5
+5 6
+6 6
+1 2
+2 3
+1 3
+4 5
+5 6
+6 4
+0 0`;
 const input = fs.split('\n');
-let [n, m] = input[0].split(' ').map(Number);
-let graph = [];
-for (let i = 1; i <= n; i++) graph[i] = [];
-for (let i = 1; i < n; i++) {
-  let [x, y, cost] = input[i].split(' ').map(Number);
-  graph[x].push([y, cost]);
-  graph[y].push([x, cost]);
-}
-
-function dfs(x, dist) {
-  if (visited[x]) return;
-  visited[x] = true;
-  distance[x] = dist;
-  for (let [y, cost] of graph[x]) dfs(y, cost + dist);
-}
-
-for (let i = 0; i < m; i++) {
-  let [x, y] = input[n + i].split(' ').map(Number);
+let line = 0;
+let testCase = 1;
+while (true) {
+  let [n, m] = input[line].split(' ').map(Number);
+  if (n == 0 && m == 0) break;
+  graph = [];
+  for (let i = 1; i <= n; i++) graph[i] = [];
+  for (let i = 1; i <= m; i++) {
+    let [x, y] = input[line + i].split(' ').map(Number);
+    graph[x].push(y);
+    graph[y].push(x);
+  }
   visited = new Array(n + 1).fill(false);
-  distance = new Array(n + 1).fill(-1);
-  dfs(x, 0);
-  console.log(distance[y]);
+  let count = 0;
+  for (let i = 1; i <= n; i++) {
+    if (!visited[i]) if (!isCycle(i, 0)) count++;
+  }
+  if (count == 0) console.log(`Case ${testCase}: No trees.`);
+  else if (count == 1) console.log(`Case ${testCase}: There is one tree`);
+  else console.log(`Case ${testCase}: A tree of ${count} trees`);
+  line += m + 1;
+  testCase++;
+}
+
+function isCycle(x, prev) {
+  visited[x] = true;
+  for (let y of graph[x]) {
+    if (!visited[y]) {
+      if (isCycle(y, x)) return true;
+    } else if (y != prev) return true;
+  }
+  return false;
 }
