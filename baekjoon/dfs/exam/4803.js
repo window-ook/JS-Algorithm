@@ -44,8 +44,8 @@ while (true) {
   }
   // 트리 개수별 출력
   if (cnt == 0) console.log(`Case ${testCase}: No trees.`);
-  else if (cnt == 1) console.log(`Case ${testCase}: There is one tree`);
-  else console.log(`Case ${testCase}: A forest of ${cnt} trees`);
+  else if (cnt == 1) console.log(`Case ${testCase}: There is one tree.`);
+  else console.log(`Case ${testCase}: A forest of ${cnt} trees.`);
   line += m + 1;
   testCase++;
 }
@@ -56,7 +56,9 @@ function isCycle(x, prev) {
     // 다음 노드를 아직 방문하지 않았다면
     if (!visited[y]) {
       if (isCycle(y, x)) return true; // 사이클 발생
-    } else if (y != prev) return true; // 방문한 적 있는 노드인데, 직전 노드가 아니라면(무방향 그래프)
+    } else if (y != prev) {
+      return true; // 방문한 적 있는 노드인데, 직전 노드가 아니라면(무방향 그래프)
+    }
   }
   return false;
 }
