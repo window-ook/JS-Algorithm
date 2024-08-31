@@ -1,9 +1,18 @@
 /** 트리 - 난이도 ⭐️⭐️ 
-  1. 아이디어 : 그래프 그리고, 노드끼리 사이클이 만들어지는 경우 찾고 사이클이 아니면 트리 개수 올리기
+  1. 아이디어 : 
+  - 그래프 그리기
+  - 방문하지 않았던 노드
 
   2. 시간 복잡도 :
+  - 그래프 생성 O(n), O(m)
+  - 그래프 탐색 O(n + m)
+  - isCycle O(n + m)
 
-  3. 자료구조 : */
+  3. 자료구조 : 
+  line
+  testCase 
+  graph []
+  visited []*/
 const fs = `6 3
 1 2
 2 3
@@ -24,25 +33,25 @@ const fs = `6 3
 0 0`;
 const input = fs.split('\n');
 let line = 0;
-let testCase = 1;
+let testCase = 1; // 이어져있는 노드들
 while (true) {
-  let [n, m] = input[line].split(' ').map(Number);
-  if (n == 0 && m == 0) break;
+  let [n, m] = input[line].split(' ').map(Number); // 정점(노드), 간선
+  if (n == 0 && m == 0) break; // 종료
   graph = [];
-  for (let i = 1; i <= n; i++) graph[i] = []; // 트리 그리기
+  for (let i = 1; i <= n; i++) graph[i] = []; // 그래프 만들기
   for (let i = 1; i <= m; i++) {
     let [x, y] = input[line + i].split(' ').map(Number);
     graph[x].push(y);
     graph[y].push(x);
   }
   visited = new Array(n + 1).fill(false);
-  let cnt = 0; // 트리 개수
+  let cnt = 0; // 트리의 개수
   for (let i = 1; i <= n; i++) {
     if (!visited[i]) {
-      if (!isCycle(i, 0)) cnt++; // 연결 되어있으면서 사이클이 아니라면 트리 수 증가
+      if (!isCycle(i, 0)) cnt++; // 연결되어있으면서 사이클이 아니라면 트리 수 올리기
     }
   }
-  // 트리 개수별 출력
+  // 트리 개수별 출력 케이스
   if (cnt == 0) console.log(`Case ${testCase}: No trees.`);
   else if (cnt == 1) console.log(`Case ${testCase}: There is one tree.`);
   else console.log(`Case ${testCase}: A forest of ${cnt} trees.`);
@@ -51,14 +60,13 @@ while (true) {
 }
 
 function isCycle(x, prev) {
-  visited[x] = true;
+  visited[x] = true; // 방문처리
   for (let y of graph[x]) {
-    // 다음 노드를 아직 방문하지 않았다면
     if (!visited[y]) {
-      if (isCycle(y, x)) return true; // 사이클 발생
+      if (isCycle(y, x)) return true; // graph[x]의 y를 방문한적 없는데 사이클이 있다면 true;
     } else if (y != prev) {
-      return true; // 방문한 적 있는 노드인데, 직전 노드가 아니라면(무방향 그래프)
+      return true; // 방문한 적 있는데 직전 노드가 아니라면 true;
     }
   }
-  return false;
+  return false; // 다 해당되지 않으면 사이클이 아님
 }
