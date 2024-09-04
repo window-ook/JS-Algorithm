@@ -1,3 +1,5 @@
+/** 숫자 그리기 - 난이도 ⭐️⭐️
+ */
 const fs = `7
 3
 1
@@ -7,16 +9,14 @@ const fs = `7
 4
 6`;
 const input = fs.split('\n');
-let n = Number(input[0]);
-let graph = [0]; // 그래프 그리기
-for (let i = 1; i <= n; i++) {
-  graph.push(Number(input[i]));
-}
+const n = Number(input[0]);
+let graph = [0];
+for (let i = 1; i <= n; i++) graph.push(Number(input[i]));
 let visited = new Array(n + 1).fill(false);
 let finished = new Array(n + 1).fill(false);
 let result = [];
-for (let x = 1; x <= n; x++) {
-  if (!visited[x]) dfs(x, graph, visited, finished, result); // 1부터 시작
+for (let i = 1; i <= n; i++) {
+  if (!visited[i]) dfs(i, graph, visited, finished, result);
 }
 console.log(result.length);
 result.sort((a, b) => a - b);
