@@ -1,5 +1,4 @@
 /** 잃어버린 괄호 - 난이도 ⭐️⭐️ */
-
 const fs = `55-50+40`;
 const group = fs.split('-');
 

@@ -1,5 +1,4 @@
 /** 회문 - 난이도 ⭐️⭐️ */
-
 const fs = `7
 abba
 summuus

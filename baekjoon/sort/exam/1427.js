@@ -1,5 +1,4 @@
 /** 소트인사이드 - 난이도 ⭐️ */
-
 const fs = `2143`;
 let input = fs.split('\n')[0];
 let arr = [];

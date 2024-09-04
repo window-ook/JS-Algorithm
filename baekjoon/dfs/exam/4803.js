@@ -1,18 +1,14 @@
 /** 트리 - 난이도 ⭐️⭐️ 
-  1. 아이디어 : 
+  
+  1. 아이디어
   - 그래프 그리기
   - 방문하지 않았던 노드
 
-  2. 시간 복잡도 :
-  - 그래프 생성 O(n), O(m)
-  - 그래프 탐색 O(n + m)
-  - isCycle O(n + m)
-
-  3. 자료구조 : 
-  line
-  testCase 
-  graph []
-  visited []*/
+  3. 자료구조
+  - line : n, m을 가지고 있는 라인
+  - testCase : 테스트 케이스 수
+  - graph [] : 그래프
+  - visited [] : 방문 처리 */
 const fs = `6 3
 1 2
 2 3

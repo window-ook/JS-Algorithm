@@ -1,5 +1,4 @@
 /** A -> B - 난이도 ⭐️⭐️ */
-
 const fs = `2 162`;
 
 let [a, b] = fs.split(' ').map(Number);

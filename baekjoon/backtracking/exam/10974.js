@@ -1,10 +1,12 @@
 /** 모든 순열 - 난이도 ⭐️⭐️
   
-  1. 아이디어 : 순열 구하기
-  2. 시간복잡도 : N!
-  3. 자료구조 : arr[], visited[], selected[]
- */
+  1. 아이디어
+  - 순열 구하기
 
+  2. 자료구조
+  - arr[]
+  - visited[]
+  - selected[] */
 const fs = '3';
 const n = Number(fs.split('\n')[0]);
 let arr = [];

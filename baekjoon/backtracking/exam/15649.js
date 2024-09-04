@@ -1,14 +1,12 @@
 /* N과 M - 난이도 ⭐️⭐️
-1. 아이디어
-- 순열 구하기
 
-2. 시간 복잡도
-N! (중복 불가능)
+  1. 아이디어
+  - 순열 구하기
 
-3. 자료구조
-- arr[] 순열을 계산할 원소를 담은 배열 : int
-- visited[] 방문 여부 : boolean
-- selected[] 현재 원소의 인덱스 : int */
+  2. 자료구조
+  - arr[] 순열을 계산할 원소를 담은 배열 : int
+  - visited[] 방문 여부 : boolean
+  - selected[] 현재 원소의 인덱스 : int */
 
 const input = `4 2`;
 const [n, m] = input.split(' ').map(Number);

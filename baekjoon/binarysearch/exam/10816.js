@@ -1,12 +1,12 @@
 /** 숫자 카드 2 - 난이도 ⭐️⭐️ 
- 
-1. 아이디어 : lowerBound, upperBound, countByRange 구현하여 사용하기
-*/
 
+  1. 아이디어
+  - lowerBound, upperBound, countByRange 구현하여 사용하기 */
 function lowerBound(arr, target, start, end) {
   while (start < end) {
     let mid = parseInt((start + end) / 2);
-    if (arr[mid] >= target) end = mid; // 최대한 왼쪽으로 이동
+    if (arr[mid] >= target)
+      end = mid; // 최대한 왼쪽으로 이동
     else start = mid + 1;
   }
   return end;
@@ -15,7 +15,8 @@ function lowerBound(arr, target, start, end) {
 function upperBound(arr, target, start, end) {
   while (start < end) {
     let mid = parseInt((start + end) / 2);
-    if (arr[mid] > target) end = mid; // 최대한 오른쪽으로 이동
+    if (arr[mid] > target)
+      end = mid; // 최대한 오른쪽으로 이동
     else start = mid + 1;
   }
   return end;

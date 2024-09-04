@@ -1,5 +1,4 @@
 /** 나이순 정렬 - 난이도 ⭐️⭐️ */
-
 const fs = `3
 21 Junkyu
 21 Dohyun
