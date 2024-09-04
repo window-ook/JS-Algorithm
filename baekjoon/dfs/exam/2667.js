@@ -20,9 +20,7 @@ const fs = `7
 const input = fs.split('\n');
 const n = Number(input[0]);
 let graph = []; // 그래프 그리기
-for (let i = 1; i <= n; i++) {
-  graph.push(input[i].split('').map(Number));
-}
+for (let i = 1; i <= n; i++) graph.push(input[i].split('').map(Number));
 let answer = []; // 단지의 수
 for (let i = 0; i < n; i++) {
   for (let j = 0; j < n; j++) {
@@ -30,8 +28,8 @@ for (let i = 0; i < n; i++) {
     if (current > 0) answer.push(current); // 단지가 존재하는 경우
   }
 }
-answer.sort((a, b) => a - b);
-console.log(answer.length + '\n' + answer.join('\n')); // 단지 수, 단지내 집 수
+answer.sort((a, b) => a - b); // 오름차순 정렬
+console.log(answer.length + '\n' + answer.join('\n')); // 단지 수 + 단지내 집 수 출력
 
 function dfs(x, y) {
   if (x >= n || x <= -1 || y >= n || x <= -1) return 0; // 맵 이탈 처리
