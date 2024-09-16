@@ -15,7 +15,7 @@ let testCases = Number(input[0]); // 테스트 케이스
 let line = 1;
 // 테스트 케이스 만큼 반복
 while (testCases--) {
-  let n = Number(input[line]); // 학생 수
+  let n = Number(input[line]); // n : 학생 수
   let graph = [0, ...input[line + 1].split(' ').map(Number)]; // 그래프 초기화 (0 포함)
   let visited = new Array(n + 1).fill(false); // 방문
   let finished = new Array(n + 1).fill(false); // 완료

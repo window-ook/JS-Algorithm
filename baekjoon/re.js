@@ -1,26 +1,23 @@
-const fs = `7
-3
-1
-1
-5
-5
-4
-6`;
+const fs = `2
+7
+3 1 3 7 3 4 6
+8
+1 2 3 4 5 6 7 8`;
 const input = fs.split('\n');
-let n = Number(input[0]);
-let graph = [0]; // 그래프 그리기
-for (let i = 1; i <= n; i++) {
-  graph.push(Number(input[i]));
+let testCases = Number(input[0]);
+let line = 1;
+while (testCases--) {
+  const n = Number(input[line]);
+  let graph = [0, ...input[line + 1].split(' ').map(Number)];
+  let visited = new Array(n + 1).fill(false);
+  let finished = new Array(n + 1).fill(false);
+  let result = [];
+  for (let i = 1; i <= n; i++) {
+    if (!visited[i]) dfs(i, graph, visited, finished, result);
+  }
+  line += 2;
+  console.log(n - result.length);
 }
-let visited = new Array(n + 1).fill(false);
-let finished = new Array(n + 1).fill(false);
-let result = [];
-for (let x = 1; x <= n; x++) {
-  if (!visited[x]) dfs(x, graph, visited, finished, result); // 1부터 시작
-}
-console.log(result.length);
-result.sort((a, b) => a - b);
-for (let x of result) console.log(x);
 
 function dfs(x, graph, visited, finished, result) {
   visited[x] = true;
