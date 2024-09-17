@@ -38,8 +38,8 @@ function dfs(x, graph, visited, finished, result) {
   else if (!finished[y]) {
     // 사이클
     while (y != x) {
-      result.push(y);
-      y = graph[y];
+      result.push(y); // 사이클인 노드를 result에 추가
+      y = graph[y]; // y는 인접노드로 변경되다가 x가 되면 반복문 종료
     }
     result.push(x);
   }
