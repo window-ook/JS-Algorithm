@@ -20,21 +20,21 @@ for (let i = 1; i <= n; i++) graph.push(input[i].split(''));
 let visited = [];
 let result1 = 0; // 일반인이 보는 구역 수
 let result2 = 0; // 적록색약이 보는 구역 수
-let dx = [-1, 1, 0, 0]; // x 좌표 이동
-let dy = [0, 0, -1, 1]; // y 좌표 이동
+let dx = [-1, 1, 0, 0]; // 상하 이동
+let dy = [0, 0, -1, 1]; // 좌우 이동
 
 function dfs(x, y) {
   if (!visited[x][y]) {
     visited[x][y] = true;
     for (let i = 0; i < 4; i++) {
-      let nx = x + dx[i]; // 상하 이동
-      let ny = y + dy[i]; // 좌우 이동
+      let nx = x + dx[i];
+      let ny = y + dy[i];
       if (nx < 0 || nx >= n || ny < 0 || ny >= n) continue; // 맵 이탈 방지
       if (graph[x][y] == graph[nx][ny]) dfs(nx, ny); // 같은 구역이면
     }
-    return true; // 새로운 구역 발견해서 구역수 증가시킴
+    return true; // 새로운 구역 발견했으니 true
   }
-  return false;
+  return false; // 방문한 노드라면 false
 }
 
 // 일반인이 보는 구역
