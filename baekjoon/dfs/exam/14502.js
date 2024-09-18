@@ -54,7 +54,7 @@ function getSafe() {
 
 // 벽을 세우면서 매번 조합의 안전 영역 크기 계산
 function dfs(count) {
-  // 울타리가 3개라면
+  // 벽 3개를 세웠으면 초기 맵을 벽 세운 후 맵에 복사하기
   if (count == 3) {
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < m; j++) {
@@ -62,16 +62,19 @@ function dfs(count) {
       }
     }
 
+    // 그리고 바이러스 전파시킨 후
     for (let i = 0; i < n; i++) {
       for (let j = 0; j < m; j++) {
-        if (temp[i][j] == 2) virus(i, j); // 바이러스가 있는 곳부터 바이러스 전파 시작
+        if (temp[i][j] == 2) virus(i, j);
       }
     }
-    result = Math.max(result, getSafe()); // 안전 영역의 최댓값을 result에 저장
+
+    // 조합 중에서 안전영역이 가장 큰 구역을 저장하기
+    result = Math.max(result, getSafe());
     return;
   }
 
-  // 빈 공간에 울타리를 설치하면서 조합 만들기
+  // 빈 공간에 벽 세우면서 조합 만들기
   for (let i = 0; i < n; i++) {
     for (let j = 0; j < m; j++) {
       if (data[i][j] == 0) {
