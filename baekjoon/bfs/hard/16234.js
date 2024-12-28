@@ -1,34 +1,9 @@
-// 문제 풀이 파일
-class Queue {
-  constructor() {
-    this.items = {};
-    this.head = 0;
-    this.tail = 0;
-  }
-
-  enqueue(item) {
-    this.items[this.tail] = item;
-    this.tail++;
-  }
-
-  dequeue() {
-    const item = this.items[this.head];
-    delete this.items[this.head];
-    this.head++;
-    return item;
-  }
-
-  getLength() {
-    return this.tail - this.head;
-  }
-}
-
-// queue 현재 선택된 국가의 위치를 담는 큐
+// 인구 이동
+// ⭐️⭐️⭐️
+// queue = 현재 선택된 국가의 위치를 담는 큐
 // union = while 안에서 인구 이동 1턴 동안 쓰일 연합,
 // united = bfs에서 사용되는 이번 턴의 연합국 리스트
 
-const fs = ``;
-const input = fs.split('\n');
 const [n, l, r] = input[0].split(' ').map(Number);
 let graph = [];
 for (let i = 1; i <= n; i++) {

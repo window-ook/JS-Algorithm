@@ -1,4 +1,5 @@
 // A -> B
+// ⭐️⭐️
 
 const fs = `2 162`;
 const [start, target] = fs.split(' ').map(Number);
