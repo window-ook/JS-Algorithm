@@ -1,88 +1,26 @@
 // 문제 풀이 파일
-class Queue {
-  constructor() {
-    this.items = {};
-    this.head = 0;
-    this.tail = 0;
-  }
-
-  enqueue(item) {
-    this.items[this.tail] = item;
-    this.tail++;
-  }
-
-  dequeue() {
-    const item = this.items[this.head];
-    delete this.items[this.head];
-    this.head++;
-    return item;
-  }
-
-  getLength() {
-    return this.tail - this.head;
-  }
-}
-
-// queue 현재 선택된 국가의 위치를 담는 큐
-// union = while 안에서 인구 이동 1턴 동안 쓰일 연합,
-// united = bfs에서 사용되는 이번 턴의 연합국 리스트
-
-const fs = ``;
+// 연속으로 2잔까지 마실 수 있고, 최대한 많이 마시는게 목표
+const fs = `6
+6
+10
+13
+9
+8
+1`;
 const input = fs.split('\n');
-const [n, l, r] = input[0].split(' ').map(Number);
-let graph = [];
-for (let i = 1; i <= n; i++) {
-  let row = input[i].split(' ').map(Number);
-  graph.push(row);
-}
-let dx = [-1, 0, 1, 0];
-let dy = [0, -1, 0, 1];
-let totalCount = 0;
+let n = Number(input[0]);
+let wine = [0];
+for (let i = 1; i <= n; i++) wine.push(Number(input[i]));
 
-while (true) {
-  let union = Array.from(Array(n), () => Array(n).fill(-1)); // [[-1,-1], [-1,-1]]
-  let index = 0; // index번 째 인구 이동
-  for (let i = 0; i < n; i++) {
-    for (let j = 0; j < n; j++) {
-      if (union[i][j] == -1) {
-        bfs(i, j, index, union);
-        index++;
-      }
-    }
-  }
-  if (index == n * n) break;
-  totalCount += 1;
+let d = new Array(n + 1).fill(0); // n잔만큼 먹었을 때 가장 많이 먹을 수 있는 양을 기록
+d[1] = wine[1];
+d[2] = wine[1] + wine[2];
+d[3] = Math.max(wine[1] + wine[2], wine[1] + wine[3], wine[2] + wine[3]);
+for (let i = 4; i <= n; i++) {
+  d[i] = Math.max(
+    d[i - 1],
+    d[i - 2] + wine[i],
+    d[i - 3] + wine[i - 1] + wine[i]
+  );
 }
-console.log(totalCount); // 총 인구 이동 횟수
-
-function bfs(x, y, index, union) {
-  let united = [[x, y]]; // 이번 턴 연합국 리스트
-  union[x][y] = index;
-  let q = new Queue();
-  q.enqueue([x, y]);
-  let summary = graph[x][y]; // 연합의 총 인구
-  let cnt = 1; // 연합국 수
-  while (q.getLength() != 0) {
-    let [x, y] = q.dequeue();
-    for (let i = 0; i < 4; i++) {
-      let nx = x + dx[i];
-      let ny = y + dy[i];
-      if (0 <= nx && nx < n && 0 <= ny && ny < n && union[nx][ny] == -1) {
-        // 국가간 인구 차이가 l이상 r이하라면 연합 형성
-        let diff = Math.abs(graph[nx][ny] - graph[x][y]);
-        if (l <= diff && diff <= r) {
-          q.enqueue([nx, ny]); // 큐에 넣음
-          union[nx][ny] = index; // 연합에 포함
-          united.push([nx, ny]); // 연합국 리스트에 추가
-          summary += graph[nx][ny]; // 연합국 인구에 추가
-          cnt += 1;
-        }
-      }
-    }
-  }
-
-  for (let unit of united) {
-    let [i, j] = unit; // 연합의 국가를 순회
-    graph[i][j] = parseInt(summary / cnt); // 각 국가에 인구 분배
-  }
-}
+console.log(d);
