@@ -16,15 +16,14 @@ const fs = `7
 5 6
 4 7`;
 const input = fs.split('\n');
-let n = Number(input[0]); // 노드의 개수
-let m = Number(input[1]); // 루트의 개수
+let n = Number(input[0]);
+let m = Number(input[1]);
 let graph = [];
 let count = 0;
 let visited = new Array(n + 1).fill(false);
 for (let i = 1; i <= n; i++) graph[i] = [];
 for (let i = 2; i <= m; i++) {
   let [x, y] = input[i].split(' ').map(Number);
-  // 서로 연결되어있는 정보로 그래프 그리기
   graph[x].push(y);
   graph[y].push(x);
 }
