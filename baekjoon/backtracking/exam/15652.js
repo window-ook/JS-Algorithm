@@ -7,13 +7,12 @@
   - arr[] : 수열에 넣을 원소들
   - selected[] : 현재 인덱스
   - answer : 정답 출력 */
-
-const fs = `4 2`;
-const input = fs.split(' ');
-const [n, m] = input.map(Number);
+let file = `4 2`;
+let [n, m] = file.split(' ').map(Number);
 let arr = [];
 for (let i = 1; i <= n; i++) arr.push(i);
 let selected = [];
+let visited = new Array(n).fill(false);
 let answer = '';
 
 function dfs(arr, depth, start) {
@@ -27,8 +26,10 @@ function dfs(arr, depth, start) {
 
   for (let i = start; i < arr.length; i++) {
     selected.push(i);
+    visited[i] = true;
     dfs(arr, depth + 1, i);
     selected.pop();
+    visited[i] = false;
   }
 }
 dfs(arr, 0, 0);

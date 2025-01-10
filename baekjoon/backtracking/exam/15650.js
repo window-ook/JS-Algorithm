@@ -33,9 +33,8 @@
   - visited [] : 방문 여부
   - answer : 정답 출력 */
 
-const fs = `4 2`;
-const input = fs.split(' ');
-const [n, m] = input.map(Number);
+let file = `4 2`;
+let [n, m] = file.split(' ').map(Number);
 let arr = [];
 for (let i = 1; i <= n; i++) arr.push(i);
 let selected = [];
@@ -44,6 +43,7 @@ let answer = '';
 
 function dfs(arr, depth, start) {
   if (depth == m) {
+    console.log(selected);
     let result = [];
     for (i of selected) result.push(arr[i]);
     for (x of result) answer += x + ' ';
@@ -52,10 +52,10 @@ function dfs(arr, depth, start) {
   }
 
   for (let i = start; i < arr.length; i++) {
-    if (visited[i]) continue;
+    if (visited[i] == true) continue;
     selected.push(i);
     visited[i] = true;
-    dfs(arr, depth + 1, i + 1);
+    dfs(arr, depth + 1, start + i);
     selected.pop();
     visited[i] = false;
   }

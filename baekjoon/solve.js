@@ -1,22 +1,29 @@
 // 문제 풀이 파일
-let fs = `9
-2
-4
-7`;
-let input = fs.split('\n');
-let n = Number(input[0]);
-let m = Number(input[1]);
-let fix = m > 0 ? input.slice(2, 2 + m).map(Number) : []; // m이 0일 수도 있음
-let vip = [0, ...fix, n + 1];
-let sections = [];
-for (let i = 1; i < vip.length; i++) sections.push(vip[i] - vip[i - 1] - 1);
+// 뎁스 끝까지 도달하기 전에 갔던 인덱스를 방문 처리 배열
+let file = `4 2`;
+let [n, m] = file.split(' ').map(Number);
+let arr = [];
+for (let i = 1; i <= n; i++) arr.push(i);
+let selected = [];
+let visited = new Array(n).fill(false);
+let answer = '';
 
-let d = Array(n + 1).fill(0);
-d[1] = 1;
-d[2] = 2;
-for (let i = 3; i <= n; i++) d[i] = d[i - 1] + d[i - 2];
+function dfs(arr, depth, start) {
+  if (depth == m) {
+    let result = [];
+    for (i of selected) result.push(arr[i]);
+    for (x of result) answer += x + ' ';
+    answer += '\n';
+    return;
+  }
 
-let result = 1;
-for (let x of sections) if (x > 0) result *= d[x];
-
-console.log(result);
+  for (let i = start; i < arr.length; i++) {
+    selected.push(i);
+    visited[i] = true;
+    dfs(arr, depth + 1, i);
+    selected.pop();
+    visited[i] = false;
+  }
+}
+dfs(arr, 0, 0);
+console.log(answer);

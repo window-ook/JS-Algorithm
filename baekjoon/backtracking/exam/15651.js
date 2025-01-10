@@ -8,12 +8,12 @@
   - selected[] : 현재 인덱스
   - answer : 정답 출력 */
 
-const fs = `4 2`;
-const input = fs.split(' ');
-const [n, m] = input.map(Number);
+let file = `4 2`;
+let [n, m] = file.split(' ').map(Number);
 let arr = [];
 for (let i = 1; i <= n; i++) arr.push(i);
 let selected = [];
+let visited = new Array(n).fill(false);
 let answer = '';
 
 function dfs(arr, depth) {
@@ -27,9 +27,11 @@ function dfs(arr, depth) {
 
   for (let i = 0; i < arr.length; i++) {
     selected.push(i);
+    visited[i] = true;
     dfs(arr, depth + 1);
     selected.pop();
+    visited[i] = false;
   }
 }
-dfs(arr, 0);
+dfs(arr, 0, 0);
 console.log(answer);
