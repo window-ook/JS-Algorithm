@@ -1,6 +1,6 @@
 function solution(name) {
   // 상하 조작
-  // A에서 가까운지 Z에서 가까운지 min으로 세기
+  // A에서 가까운지 Z에서 가까운지 min으로 판단해서 총 상하이동거리 구하기
   const upDown = (char) =>
     Math.min(
       char.charCodeAt(0) - 'A'.charCodeAt(0), // A에서 해당 글자까지
