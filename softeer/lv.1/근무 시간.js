@@ -1,3 +1,4 @@
+// 구현
 const file = require('fs').readFileSync('/dev/stdin', 'utf8');
 const input = file.trim().toString().split('\n');
 let everyday = 0;
