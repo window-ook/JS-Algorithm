@@ -7,14 +7,11 @@ let file = `5 3
 1 5`;
 let input = file.split('\n');
 let [n, k] = input[0].split(' ').map(Number);
-let scores = input[1].split(' ').map(Number);
-
-let preSum = new Array(n + 1).fill(0);
-for (let i = 1; i <= n; i++) preSum[i] = preSum[i - 1] + scores[i - 1];
-
+let s = [0, ...input[1].split(' ').map(Number)];
+let prefixSum = [0];
+for (let i = 1; i <= n; i++) prefixSum[i] = prefixSum[i - 1] + s[i];
 for (let i = 1; i <= k; i++) {
   let [start, end] = input[i + 1].split(' ').map(Number);
-  let total = preSum[end] - preSum[start - 1];
-  let avg = total / (end - start + 1);
-  console.log(avg.toFixed(2));
+  let result = (prefixSum[end] - prefixSum[start - 1]) / (end - start + 1);
+  console.log(result.toFixed(2));
 }
