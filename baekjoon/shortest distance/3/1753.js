@@ -1,7 +1,7 @@
 // 최단경로 ⭐️⭐️⭐️
-// 5 → 1 →  2 ↘
-//          ↓   4
-//          3 ↗
+// 5 → 1 → 2 ↘
+//         ↓  4
+//         3 ↗
 
 let file = `5 6
 1
@@ -111,7 +111,7 @@ function dijkstra() {
     let now = node.val; // 현재 노드
     let dist = node.priority; // 현재 노드까지의 거리
 
-    if (distance[now] < dist) continue; // 최단거리가 이미 있으면 뒤의 과정은 패스하기
+    if (distance[now] < dist) continue; // 이미 최단거리라면, 뒤는 생략하기
 
     for (let i of graph[now]) {
       let cost = i[1] + dist; // 현재 노드까지 거리 + 인접 노드까지의 거리
